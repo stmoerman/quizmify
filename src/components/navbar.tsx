@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import SignInButton from "@/components/sign-in-button";
 import UserAccountDropdown from "@/components/user-account-dropdown";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type Props = {};
 
@@ -19,11 +20,14 @@ const Navbar = async (props: Props) => {
           </p>
         </Link>
         <div className="flex items-center">
-          {session?.user ? (
-            <UserAccountDropdown user={session.user} />
-          ) : (
-            <SignInButton text="Sign In" />
-          )}
+          <ThemeToggle className="mr-4" />
+          <div className="flex items-center">
+            {session?.user ? (
+              <UserAccountDropdown user={session.user} />
+            ) : (
+              <SignInButton text="Sign In" />
+            )}
+          </div>
         </div>
       </div>
     </div>
