@@ -74,6 +74,7 @@ const MCQ = ({ game }: Props) => {
           await axios.post("/api/end-game", { gameId: game.id });
           return;
         }
+        setSelectedChoice(0);
         setQuestionIndex((prev) => prev + 1);
       },
     });
