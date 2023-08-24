@@ -1,8 +1,7 @@
-import { Hourglass } from "lucide-react";
-import { differenceInSeconds } from "date-fns";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Hourglass } from "lucide-react";
 import { formatTimeDelta } from "@/lib/utils";
+import { differenceInSeconds } from "date-fns";
 
 type Props = {
   timeEnded: Date;
