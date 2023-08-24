@@ -50,10 +50,10 @@ const MCQ = ({ game }: Props) => {
     },
   });
 
-  const handleNext = useCallback(() => {
+  const handleNext = useCallback(async () => {
     if (isChecking) return;
     checkAnswer(undefined, {
-      onSuccess: ({ isCorrect }) => {
+      onSuccess: async ({ isCorrect }) => {
         if (isCorrect) {
           toast({
             title: "Correct",
@@ -71,12 +71,20 @@ const MCQ = ({ game }: Props) => {
         }
         if (questionIndex === game.questions.length - 1) {
           setHasEnded(true);
+          await axios.post("/api/end-game", { gameId: game.id });
           return;
         }
         setQuestionIndex((prev) => prev + 1);
       },
     });
-  }, [checkAnswer, toast, isChecking, questionIndex, game.questions.length]);
+  }, [
+    checkAnswer,
+    toast,
+    isChecking,
+    questionIndex,
+    game.questions.length,
+    game.id,
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

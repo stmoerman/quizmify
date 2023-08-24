@@ -20,6 +20,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { checkAnswerSchema } from "@/schemas/form/quiz";
 import BlankAnswerInput from "@/components/blank-answer-input";
+
 type Props = {
   game: Game & { questions: Pick<Question, "id" | "question" | "answer">[] };
 };
@@ -53,22 +54,30 @@ const OpenEnded = ({ game }: Props) => {
     },
   });
 
-  const handleNext = useCallback(() => {
+  const handleNext = useCallback(async () => {
     if (isChecking) return;
     checkAnswer(undefined, {
-      onSuccess: ({ percentageSimilar }) => {
+      onSuccess: async ({ percentageSimilar }) => {
         toast({
           title: `Your answer is ${percentageSimilar}% similar to the correct answer`,
           description: "Answers are matched based on similarity comparisons.",
         });
         if (questionIndex === game.questions.length - 1) {
           setHasEnded(true);
+          await axios.post("/api/end-game", { gameId: game.id });
           return;
         }
         setQuestionIndex((prev) => prev + 1);
       },
     });
-  }, [checkAnswer, toast, isChecking, questionIndex, game.questions.length]);
+  }, [
+    checkAnswer,
+    toast,
+    isChecking,
+    questionIndex,
+    game.questions.length,
+    game.id,
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
