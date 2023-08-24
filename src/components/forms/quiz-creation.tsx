@@ -19,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { BookOpen, CopyCheck } from "lucide-react";
+import { BookOpen, CopyCheck, Loader2 } from "lucide-react";
 
 import { useForm } from "react-hook-form";
 import { quizCreationSchema } from "@/schemas/form/quiz";
@@ -157,6 +157,7 @@ const QuizCreation = (props: Props) => {
                 </Button>
               </div>
               <Button disabled={isLoading} type="submit">
+                {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                 Submit
               </Button>
             </form>
