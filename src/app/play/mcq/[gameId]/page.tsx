@@ -29,7 +29,7 @@ const MCQQuizPage = async ({ params: { gameId } }: Props) => {
       },
     },
   });
-  if (!game) {
+  if (!game || game.gameType !== "mcq") {
     return redirect("/quiz");
   }
   return <MCQ game={game} />;
