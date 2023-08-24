@@ -16,17 +16,18 @@ const HistoryPage = async (props: Props) => {
     return redirect("/");
   }
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px]">
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-2xl font-bold">History</CardTitle>
-            <Link href="/dashboard" className={buttonVariants()}>
-              <LucideLayoutDashboard className="mr-2" />
-            </Link>
-          </div>
-        </CardHeader>
-        <CardContent className="max-h-[60vw] overflow-scroll">
+    <div className="p-8 mx-auto max-w-7xl">
+      <div className="flex items-center justify-between space-y-2">
+        <h2 className="text-3xl font-bold tracking-tight">History</h2>
+        <div className="flex items-center space-x-2">
+          <Link href="/dashboard" className={buttonVariants()}>
+            <LucideLayoutDashboard className="mr-2" />
+            Back to Dashboard
+          </Link>
+        </div>
+      </div>
+      <Card className="mt-4">
+        <CardContent className="mt-5 max-h-screen overflow-scroll">
           <HistoryComponent limit={100} userId={session.user.id} />
         </CardContent>
       </Card>
