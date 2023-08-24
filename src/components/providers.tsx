@@ -11,7 +11,11 @@ const queryClient = new QueryClient();
 const Providers = ({ children, ...props }: ThemeProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
+      <NextThemesProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+      >
         <SessionProvider>{children}</SessionProvider>
       </NextThemesProvider>
     </QueryClientProvider>
