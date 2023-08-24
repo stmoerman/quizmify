@@ -37,7 +37,7 @@ const UserAccountDropdown = ({ user }: Props) => {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/">Other Link</Link>
+          <Link href="/history">View History</Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
