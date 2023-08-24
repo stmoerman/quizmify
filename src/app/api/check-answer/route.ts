@@ -29,7 +29,7 @@ export async function POST(req: Request, res: Response) {
       const isCorrect =
         question.answer.toLowerCase().trim() ===
         userAnswer.toLowerCase().trim();
-      await prisma?.question.update({
+      await prismadb.question.update({
         where: { id: questionId },
         data: {
           isCorrect,
